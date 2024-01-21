@@ -7,8 +7,9 @@
      $email = isset($_POST['email'])? $_POST['email'] : '';
      $password = isset($_POST['password'])? $_POST['password'] : '';
      $phone = isset($_POST['phone'])? $_POST['phone'] : '';
+     $password = password_hash($password, PASSWORD_BCRYPT);
 
-     $query = $connection->query("INSERT INTO user(email,username,password, phone)VALUES('$username','$email','$password','$phone')");
+     $query = $connection->query("INSERT INTO user(username,email,password, phone)VALUES('$username','$email','$password','$phone')");
      if($query){
         echo"<h3>You have successfully Register</h3>";
        }
@@ -49,5 +50,7 @@
             </tr>
         </table>
     </form>
+    <hr>
+    <a href="users.php" target="_blank">See user list</a>
 </body>
 </html>
